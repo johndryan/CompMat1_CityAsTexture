@@ -26,11 +26,12 @@ void setup() {
 }
 
 void draw() {
+  loadPixels();
   for (int i=0; i<roads.size(); i++) {
     Road r = roads.get(i);
     r.update();
     r.display();
-    if (r.state == finishState) {
+    if (r.state >= finishState) {
       roads.remove(i);
     }
   }

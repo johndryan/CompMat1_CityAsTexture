@@ -1,4 +1,3 @@
-
 class Road {
   int x, y, drawX, drawY, distance, direction, progress, state;
   Road(int x, int y, int direction, int distance) {
@@ -19,21 +18,14 @@ class Road {
     case 0:
       //--- GROW if distance not yet completed
       if (progress < distance) {
-        switch(direction) {
-        case 0: //UP
-          drawY--; 
-          break;
-        case 1: //RIGHT
-          drawX++; 
-          break;
-        case 2: //DOWN
-          drawY++; 
-          break;
-        case 3: //LEFT
-          drawX--; 
-          break;
-        }
+        advance();
         progress++;
+        //Still in frame?
+        if (drawX <= 0 || drawX >= width || drawY <= 0 || drawY >= height) {
+          state += 2;
+          drawX = x;
+          drawY = y;
+        }
       } 
       else {
         state++;
@@ -49,11 +41,17 @@ class Road {
     case 0:
       //--- GROW
       stroke(255);
-      point(drawX, drawY);
+      println("[" + drawX + "," + drawY + "]");
+      if (pixels[drawY*width+drawX] == color(0)) {
+        point(drawX, drawY);
+      } 
+      else {
+        state++;
+      }
       break;
     case 1:
       //--- SPAWN
-      spawnNewRoads(); //Do I need to check if on stage?
+      spawnNewRoads();
       break;
     }
   }
@@ -67,6 +65,26 @@ class Road {
         r = new Road(drawX, drawY, i, int(random(minLength, maxLength)));
         roads.add(r);
       }
+    }
+    state++;
+    drawX = x;
+    drawY = y;
+  }
+
+  void advance() {
+    switch(direction) {
+    case 0: //UP
+      drawY--; 
+      break;
+    case 1: //RIGHT
+      drawX++; 
+      break;
+    case 2: //DOWN
+      drawY++; 
+      break;
+    case 3: //LEFT
+      drawX--; 
+      break;
     }
   }
 }
