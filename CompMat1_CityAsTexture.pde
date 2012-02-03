@@ -1,8 +1,10 @@
 //variables
 Road r;
-int minLength = 20;
-int maxLength = 100;
-int finishState = 1;
+int minLength = 10;
+int maxLength = 50;
+int finishState = 3;
+int counter = 0;
+int roadWidth = 2;
 
 //arrays
 ArrayList<Road> roads;
@@ -30,6 +32,7 @@ void draw() {
   for (int i=0; i<roads.size(); i++) {
     Road r = roads.get(i);
     r.update();
+    //println("Frame " + counter++ + " : Road # " + i + " : State = " + r.state);
     r.display();
     if (r.state >= finishState) {
       roads.remove(i);
