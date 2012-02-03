@@ -5,5 +5,5 @@ As part of a project studying computation and materiality, I wanted to explore t
 
 # More Information
 
-* Video of sketches:	http://vimeo.com/36113778
-* Blog post: 			http://journal.lifeforms.ie/post/16950839723/pixels-screens-surfaces
+* Video of sketches: http://vimeo.com/36113778
+* Blog post: http://journal.lifeforms.ie/post/16950839723/pixels-screens-surfaces
